@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ff-modal": [
+        "dist/ff-modal"
+      ],
+      "ff-modal/*": [
+        "dist/ff-modal/*"
+      ]
+    }
   }
 }

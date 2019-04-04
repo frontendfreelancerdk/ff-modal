@@ -133,6 +133,41 @@
           }
         }
       }
+    },
+    "ff-modal": {
+      "root": "projects/ff-modal",
+      "sourceRoot": "projects/ff-modal/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ff-modal/tsconfig.lib.json",
+            "project": "projects/ff-modal/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ff-modal/src/test.ts",
+            "tsConfig": "projects/ff-modal/tsconfig.spec.json",
+            "karmaConfig": "projects/ff-modal/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ff-modal/tsconfig.lib.json",
+              "projects/ff-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ff-modal-app"

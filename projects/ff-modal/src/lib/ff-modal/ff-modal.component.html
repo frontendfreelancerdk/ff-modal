@@ -1,0 +1,8 @@
+<div class="ff-modal-wrapper ff-rounded"
+     [@state]="visibility"
+     (@state.done)="_animationDone($event)"
+     (@state.start)="_animationStart($event)"
+>
+  <span class="ff-close" (click)="close()"></span>
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</div>
