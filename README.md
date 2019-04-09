@@ -7,21 +7,21 @@
 ```
 npm install ff-modal --save
 ```
-Also if you will use FFModalService you have to install one more dependency. 
+Also if you use FFModalService you have to install one more dependency. 
 ```
 npm install ff-overlay --save
 ```
 
 ## Using
 
-You have a two ways to use modal in your project:
+You have two ways to use modal in your project:
 - from component
 - from service
 
 `!IMPORTANT`
 The main difference - if you use with the service there can be only single modal,
-but if you use with component there can be multiple modals. Also service method `close` 
-can't close any modals which you created as component.
+but if you are using with component there can be multiple modals. Also service method `close` 
+can't close any modals which you created as a component.
 
 ### First step : include FFModalModule in AppModule imports.
 `app.module.ts`
@@ -48,7 +48,7 @@ export class AppModule {
 As ng-content
 
 `app.component.html`
-```angular2html
+```html
 <ff-modal *ngIf="flag" (closed)="flag = false">
   <p>Lorem ipsum dolor sit amet.</p>
 </ff-modal>
@@ -58,7 +58,7 @@ As ng-content
 Or with Template Reference Variables
 
 `app.compoent.html`
-```angular2html
+```html
 <ff-modal *ngIf="flag" [ff-content]="myTemlate" (closed)="flag = false">
 </ff-modal>
 
@@ -124,7 +124,7 @@ export class AppComponent {
 
 `app.component.html`
 
-```angular2html
+```html
 <ng-template #myTemlate>
   <div>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -157,7 +157,7 @@ export class AppComponent {
 `FFModalService`
 ```typescript
 /* Method open modal. First parameter is required.
-It takes some template that you want to set.
+It takes some template, that you want to set.
 Second - is optional. It takes options for modal */
   open(template:TemplateRef<any>, options: FFModalOptions)
 // Method take some options that will be set to modal
@@ -183,7 +183,7 @@ Second - is optional. It takes options for modal */
 ```
 
 ## Styling
-You can change default styles. That can be used to target the overlay
+You can change default styles. That can be used to target a overlay, wrapper or cross.
 
 `styles.css` your global styles
 ```css
