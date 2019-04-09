@@ -3,12 +3,12 @@ addons:
   chrome: stable
 language: node_js
 node_js:
-  - node
+- node
 script:
-  - npm run test_lib
-  - npm run build_lib
+- npm run test_lib
+- npm run build_lib
 before_deploy:
-  - cd dist/ff-overlay
+- cd dist/ff-overlay
 deploy:
   provider: npm
   skip_cleanup: true
@@ -16,3 +16,5 @@ deploy:
   on:
     tags: true
     branch: master
+  api_key:
+    secure: Mrv2fycK5si96lK+T2jEqM3y9m7rzITJTY0SdQZBE7o4TBOe0vEw5Mcxx8Wwp2DEJPWJX4qiGjHeFFspzRdww5L0i3xf4rMs7/Il+8o3oR2Pvwq4qt6xM5NXIqRXzJmw8ITIWBlLJQuHWLLBWRi8fUJTl1M2B0rONI2NAixian6rS2Qrmf4iuA5gkaTBrAQWk6048dIA4YDc0+c4cFXjfm8fNolCiMHvjPchh+NWp4SVN4tlRKQYfya5/tBnGF5YEqxnaICVVyBA/Shm2Roivti0DUc9p0BVbjwjJu0WK/p7bp9+4rTCKa1/PCX75J17biY7AajXHqI8Faf5hG4esB5TangHI0tCz+SC7xcfMMBJrKwAxFrPz16sroA5go/hubUxARi+Z44NBt+2oiWlPllKidHi9hyrXFxd8C7KSPf+E7jyewyYIbuaTkz2oxJvUyx6dPx7Axbn/IkTxJruRUSwh8kBpu+4MfKs/oWk8QJltwI0ZwL1JOMkAwLVIRm9xS4fP8DN3sYoRufJ5uWnWpqrTxNocIQJUGEXS/r5/QobhjM9EUiEG5ys33Mj/fUwEMwfAZonyWEzD0RdtxIHN3OfAXME35cuJBTEHTOohqD/y5Nd2GojsWH5Xbpv/ZRm/h5P+YA5yC7bZw67P8o/cHWTjpBCqUy5JDT8n4euq5w=
