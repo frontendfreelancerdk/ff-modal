@@ -1,20 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {FFModalModule} from 'ff-modal';
-import {FFModalModule} from '../../projects/ff-modal/src/lib/ff-modal.module';
+import {SomeComponentComponent} from './some-component/some-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SomeComponentComponent
   ],
   imports: [
-    BrowserModule,
     FFModalModule,
-    FFModalModule
+    BrowserModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

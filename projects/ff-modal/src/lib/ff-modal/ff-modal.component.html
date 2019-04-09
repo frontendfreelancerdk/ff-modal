@@ -1,8 +1,8 @@
-<div class="ff-modal-wrapper ff-rounded"
-     [@state]="visibility"
+<div class="ff-modal-wrapper {{options.wrapperClass}}" [ngClass]="{'ff-modal-rounded':options.rounded}"
+     [@state]="_visibility"
      (@state.done)="_animationDone($event)"
-     (@state.start)="_animationStart($event)"
+     (@state.start)="_animationStart()"
 >
-  <span class="ff-close" (click)="close()"></span>
-  <ng-container *ngTemplateOutlet="content"></ng-container>
+  <span *ngIf="options.cross" class="ff-modal-cross" (click)="close()"></span>
+  <ng-content *ngIf="!content; else content"></ng-content>
 </div>

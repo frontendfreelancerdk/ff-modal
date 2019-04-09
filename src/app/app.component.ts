@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {FFModalService} from 'ff-modal';
 
 @Component({
   selector: 'ff-root',
@@ -6,15 +7,22 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ff-modal-app';
+  @ViewChild('tpl') template: TemplateRef<any>;
+  @ViewChild('tp2') template2: TemplateRef<any>;
+  @ViewChild('someComponent') someComponent: TemplateRef<any>;
   flag = false;
 
-  openModal() {
-    this.flag = true;
+
+  constructor(public ffModalService: FFModalService) {
+
   }
 
-  onClosed(event) {
-    // after closed event = true
-    this.flag = !event;
+  openModal(template, options = {}) {
+    this.ffModalService.open(template, options);
   }
+
+  closeModal() {
+    this.ffModalService.close();
+  }
+
 }

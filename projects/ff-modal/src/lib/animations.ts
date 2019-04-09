@@ -10,13 +10,13 @@ export const modalState = trigger('state', [
   transition('* => hidden', animate('200ms cubic-bezier(0, 0, 1, 0.2)', style({opacity: 0, transform: 'scale(0)'}))),
 ]);
 
-export const modalWrapperState = trigger('EnterLeave', [
-  state('fade', style({background: 'rgba(0,0,0,0.5)'})),
+export const modalWrapperState = trigger('fadeInOut', [
+  state('fade', style({opacity: 1})),
   transition(':enter', [
-    style({background: 'rgba(0,0,0,0.0)'}),
+    style({opacity: 0}),
     animate('0.5s ease-in')
   ]),
   transition(':leave', [
-    animate('0.3s ease-out', style({background: 'rgba(0,0,0,0.0)'}))
+    animate('0.3s ease-out', style({opacity: 0}))
   ])
 ]);

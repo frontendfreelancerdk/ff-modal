@@ -131,11 +131,13 @@
   quisquam repudiandae sit! Accusantium corporis, dolor excepturi incidunt labore laudantium praesentium. Architecto
   culpa ea, eligendi eos fugiat impedit ipsa laboriosam necessitatibus numquam optio quisquam ratione repellat
   repudiandae tempora voluptate? Aliquid animi ea eum ipsam itaque quae, quasi qui repudiandae.</p>
-<button (click)="openModal()">open modal</button>
 
-<ff-modal [ff-content]="tpl" *ngIf="flag" (closed)="onClosed($event)"></ff-modal>
+<ff-modal [ff-content]="tpl" *ngIf="flag" (closed)="flag = false">TEST</ff-modal>
 
 <ng-template #tpl>
+  <p>Lorem ipsum dolor sit amet.</p>
+</ng-template>
+<ng-template #tpl2>
   <div>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium modi non vitae. A consequuntur delectus,
     dolore est maiores mollitia quaerat quisquam quos sit vel! Ad aliquam aperiam asperiores atque cupiditate, et
@@ -147,4 +149,17 @@
   </div>
 </ng-template>
 
+<ng-template #someComponent>
+  <ff-some-component></ff-some-component>
+</ng-template>
+
+<button (click)="flag = true">open modal</button>
+<div class="controls">
+  <button (click)="openModal(someComponent, {wrapperClass: 'myClass', overlayClass: 'myOverlayClass'})">
+    open some component in modal
+  </button>
+  <button (click)="openModal(tpl2, {wrapperClass: 'myClass2', overlayClass: 'myOverlayClass2'})">open another modal
+  </button>
+  <button (click)="closeModal()">close modal</button>
+</div>
 

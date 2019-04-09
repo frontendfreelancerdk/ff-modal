@@ -1,13 +1,18 @@
-:host {
+.ff-modal{
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, .55);
+  pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.ff-modal-overlay{
+  background-color: rgba(0, 0, 0, .55);
+}
+.ff-modal.ff-modal-overlay{
   pointer-events: all;
 }
 
@@ -17,12 +22,13 @@
   max-height: 80%;
   padding: 1.25rem;
   position: relative;
-  &.ff-rounded {
+  pointer-events: all;
+  &.ff-modal-rounded {
     border-radius: 0.2rem;
   }
 }
 
-.ff-close {
+.ff-modal-cross {
   display: inline-block;
   position: absolute;
   top: 0.125rem;
@@ -33,11 +39,11 @@
   cursor: pointer;
 }
 
-.ff-close:hover {
+.ff-modal-cross:hover {
   opacity: 1;
 }
 
-.ff-close:before, .ff-close:after {
+.ff-modal-cross:before, .ff-modal-cross:after {
   position: absolute;
   left: calc(50% - 0.0625rem);
   content: '';
@@ -46,16 +52,17 @@
   background-color: #333;
 }
 
-.ff-close:before {
+.ff-modal-cross:before {
   transform: rotate(45deg);
 }
 
-.ff-close:after {
+.ff-modal-cross:after {
   transform: rotate(-45deg);
 }
 
-.ff-rounded {
-  .ff-close:before, .ff-close:after {
+.ff-modal-rounded {
+  .ff-modal-cross:before, .ff-modal-cross:after {
     border-radius: 0.0625rem;
   }
 }
+

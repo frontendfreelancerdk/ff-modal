@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+ff-modal .myClass {
+  background-color: #ff6b6b;
+  color: #ffffff;
+}
+
+ff-modal .myClass2 {
+  background-color: #4ddbfb;
+  color: #ffffff;
+}
+ff-modal.myOverlayClass2 {
+  background-color: rgba(255,107,107,.5);
+  color: #ffffff;
+}
+
+ff-modal.myOverlayClass {
+  background-color: rgba(77,219,251,.5);
+  color: #ffffff;
+}

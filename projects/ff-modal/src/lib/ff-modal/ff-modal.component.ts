@@ -1,49 +1,100 @@
 import {
-  AfterViewInit, ChangeDetectorRef,
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   HostBinding,
   HostListener,
   Input,
-  OnInit,
   Output,
-  TemplateRef
+  TemplateRef,
+  ViewEncapsulation
 } from '@angular/core';
 import {modalState, modalWrapperState} from '../animations';
 import {BehaviorSubject} from 'rxjs';
+
+export interface FFModalOptions {
+  disabled?: boolean;
+  cross?: boolean;
+  overlay?: boolean;
+  closeOnClickOutsideModal?: boolean;
+  rounded?: boolean;
+  overlayClass?: string;
+  wrapperClass?: string;
+}
+
+const defaultOptions = {
+  disabled: false,
+  cross: true,
+  overlay: true,
+  closeOnClickOutsideModal: true,
+  rounded: true,
+  overlayClass: '',
+  wrapperClass: ''
+};
 
 @Component({
   selector: 'ff-modal',
   templateUrl: './ff-modal.component.html',
   styleUrls: ['./ff-modal.component.scss'],
-  animations: [modalState, modalWrapperState]
+  animations: [modalState, modalWrapperState],
+  encapsulation: ViewEncapsulation.None
 })
-export class FFModalComponent implements OnInit, AfterViewInit {
-  _visibility = 'initial';
-  public afterHide = new BehaviorSubject(false);
-
-  get visibility() {
-    return this._visibility;
+export class FFModalComponent implements AfterViewInit {
+  _state = 'initial';
+  _animated = true;
+  _options: FFModalOptions = defaultOptions;
+  get options() {
+    return this._options;
   }
 
-  set visibility(val) {
-    this._visibility = val;
+  public _afterHide = new BehaviorSubject(false);
+
+  get _visibility() {
+    return this._state;
+  }
+
+  set _visibility(val) {
+    this._state = val;
   }
 
   @Input('ff-content') content: TemplateRef<any>;
 
-  @HostBinding('@EnterLeave') _anim = 'fade';
+  @Input('ff-modal-options') set options(options: FFModalOptions) {
+    this._options = Object.assign({}, this._options, options);
+    if (!this.options.overlay) {
+      this._animated = false;
+      this._anim = false;
+      this._visibility = 'visible';
+      this.classes = '';
+    } else {
+      this.classes = 'ff-modal-overlay ' + this.options.overlayClass;
+    }
+
+  }
+
+  _classes = 'ff-modal ff-modal-overlay';
+  set classes(val: string) {
+    this._classes = 'ff-modal ' + val;
+  }
+
+  @HostBinding('@fadeInOut') _anim: boolean | string = 'fade';
+
+  @HostBinding('class') get classes() {
+    return this._classes;
+  }
 
   @HostListener('click', ['$event']) onClick(e) {
-    if (e.target === this.el.nativeElement) {
+    if (e.target === this.el.nativeElement && this._options.closeOnClickOutsideModal) {
       this.close();
     }
   }
 
-  @HostListener('@EnterLeave.done', ['$event']) hostAnimationDone(e) {
+  @HostListener('@fadeInOut.done', ['$event']) hostAnimationDone(e) {
     if (e.toState === 'fade') {
-      this.visibility = 'visible';
+      this._animated = false;
+      this._visibility = 'visible';
     }
   }
 
@@ -51,28 +102,30 @@ export class FFModalComponent implements OnInit, AfterViewInit {
 
 
   constructor(private el: ElementRef, private cdRef: ChangeDetectorRef) {
-    this.afterHide.subscribe((val: boolean) => {
-      this.closed.emit(val);
+    this._afterHide.subscribe((val: boolean) => {
+      if (val) {
+        this.closed.emit(val);
+      }
     });
-
-    setTimeout(() => {
-      this.visibility = 'visible';
-    }, 5000);
-  }
-
-  ngOnInit() {
   }
 
   public close() {
-    this.visibility = 'hidden';
+    if (!this.isOpen() || this._options.disabled) {
+      return;
+    }
+    this._visibility = 'hidden';
   }
 
-  _animationStart(e) {
+  _animationStart() {
+    this._animated = true;
   }
 
   _animationDone(e) {
+    if (e.toState !== 'initial') {
+      this._animated = false;
+    }
     if (e.toState === 'hidden') {
-      this.afterHide.next(true);
+      this._afterHide.next(true);
     }
   }
 
@@ -82,5 +135,9 @@ export class FFModalComponent implements OnInit, AfterViewInit {
 
   _doCheck() {
     this.cdRef.detectChanges();
+  }
+
+  public isOpen() {
+    return !this._animated && this._visibility === 'visible';
   }
 }
