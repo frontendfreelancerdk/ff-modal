@@ -1,9 +1,11 @@
 {
   "name": "ff-modal",
-  "version": "0.0.2",
+  "version": "0.0.3",
+  "dependencies": {
+    "ff-overlay": "^0.0.4"
+  },
   "peerDependencies": {
     "@angular/common": "^7.0.0",
-    "@angular/core": "^7.0.0",
-    "ff-overlay": "^0.0.2"
+    "@angular/core": "^7.0.0"
   }
 }

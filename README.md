@@ -7,12 +7,8 @@
 ```
 npm install ff-modal --save
 ```
-Also if you use FFModalService you have to install one more dependency. 
-```
-npm install ff-overlay --save
-```
 
-## Using
+## Usage
 
 You have two ways to use modal in your project:
 - from component
@@ -85,11 +81,6 @@ export class AppComponent {
 #### Second way
 
 Using with service and Template Reference Variables
-
-**Remember! You need to install ff-overlay dependency to use service**
-```
-npm install ff-overlay --save
-```
 
 `app.component.ts`
 ```typescript
