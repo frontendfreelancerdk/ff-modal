@@ -45,7 +45,7 @@ export class FFModalService {
     this.modal.instance._doCheck();
     const domElem = (this.modal.hostView as EmbeddedViewRef<any>)
       .rootNodes[0] as HTMLElement;
-    this.renderer.appendChild(this.overlayService.getOverlay(), domElem);
+    this.overlayService.appendChild(domElem);
     this.modal.instance._afterHide.subscribe((val) => {
       if (val) {
         this._close();
@@ -63,7 +63,7 @@ export class FFModalService {
     if (this.modal) {
       const domElem = (this.modal.hostView as EmbeddedViewRef<any>)
         .rootNodes[0] as HTMLElement;
-      this.renderer.removeChild(this.overlayService.getOverlay(), domElem);
+      this.overlayService.removeChild(domElem);
       this.modal = null;
     }
   }

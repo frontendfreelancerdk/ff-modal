@@ -152,7 +152,8 @@
           "options": {
             "main": "projects/ff-modal/src/test.ts",
             "tsConfig": "projects/ff-modal/tsconfig.spec.json",
-            "karmaConfig": "projects/ff-modal/karma.conf.js"
+            "karmaConfig": "projects/ff-modal/karma.conf.js",
+            "codeCoverage": true
           }
         },
         "lint": {
