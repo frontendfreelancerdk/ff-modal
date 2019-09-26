@@ -7,9 +7,9 @@ import {FFModalService} from 'ff-modal';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @ViewChild('tpl') template: TemplateRef<any>;
-  @ViewChild('tp2') template2: TemplateRef<any>;
-  @ViewChild('someComponent') someComponent: TemplateRef<any>;
+  @ViewChild('tpl', { static: true }) template: TemplateRef<any>;
+  @ViewChild('tp2', { static: false }) template2: TemplateRef<any>;
+  @ViewChild('someComponent', { static: true }) someComponent: TemplateRef<any>;
   flag = false;
 
 
