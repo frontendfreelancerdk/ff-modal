@@ -100,7 +100,6 @@ export class FFModalComponent implements AfterViewInit {
 
   @Output() closed = new EventEmitter<boolean>();
 
-
   constructor(private el: ElementRef, private cdRef: ChangeDetectorRef) {
     this._afterHide.subscribe((val: boolean) => {
       if (val) {

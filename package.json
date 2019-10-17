@@ -1,6 +1,6 @@
 {
   "name": "ff-modal-app",
-  "version": "0.1.0",
+  "version": "8.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -24,7 +24,7 @@
     "@angular/platform-browser-dynamic": "~8.2.8",
     "@angular/router": "~8.2.8",
     "core-js": "^2.5.4",
-    "ff-overlay": "^0.0.5",
+    "ff-overlay": "8.0.0",
     "rxjs": "~6.5.3",
     "zone.js": "~0.9.1"
   },
